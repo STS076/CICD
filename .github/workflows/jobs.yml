@@ -6,7 +6,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: npm install
       - run: npm run build
-  download artifact:
+  download-artifact:
     runs-on: unbuntu-lastest
     steps:
       - uses: actions/download-artifact@v3
