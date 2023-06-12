@@ -10,6 +10,35 @@ jobs:
       - run: ls -lah
       - run: npm install -g bats
       - run: bats -v
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/cache@v3
+  #       with:  
+  #         path: |
+  #           node_modules
+  #           /home/runner/.cache/Cypress
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #     - run: npm install
+  #     - run: npm run build
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/cache@v3
+  #       with:  
+  #         path: |
+  #             node_modules
+  #             /home/runner/.cache/Cypress
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #     - run: npm run e2e:headless
+  #     - if: always()
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: my-artifact
+  #         path: cypress/videos
 name: learn-github-actions
 'on': [push]
 run-name: ${{ github.actor }} is learning GitHub Actions

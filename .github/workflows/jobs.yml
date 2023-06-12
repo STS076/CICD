@@ -1,32 +1,14 @@
 ---
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:  
-          path: |
-            node_modules
-            /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm install
-      - run: npm run build
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:  
-          path: |
-              node_modules
-              /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - run: npm run e2e:headless
-      - if: always()
-        uses: actions/upload-artifact@v3
+      - run : npm run build 
+      - run : npm run start 
+      - uses: webfactory/ssh-agent@v0.8.0
         with:
-          name: my-artifact
-          path: cypress/videos
+         ssh-private-key: |
+          ${{ secrets.SSH_HOST }}
+          ${{ secrets.SSH_KEY }}
+          ${{ secrets.SSH_USER }}
 'on': [push]
