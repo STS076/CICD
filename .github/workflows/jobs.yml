@@ -20,7 +20,9 @@ jobs:
       - uses: actions/cache@v3
         with:
           key: key
-          path: node_modules
+          path:
+            - node_modules
+            - /home/runner/.cache/Cypress
       - run: npm run e2e:headless
       - if: always()
         uses: actions/upload-artifact@v3
