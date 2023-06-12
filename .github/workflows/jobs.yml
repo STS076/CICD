@@ -10,6 +10,7 @@ jobs:
         with:
           path: node_mobules
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
