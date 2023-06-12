@@ -8,7 +8,7 @@ jobs:
       - run: npm run build
       - uses: actions/cache@v3
         with:
-          path: node_mobules
+          path: node_modules
           key : key
   test:
     needs: build
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
         with:
-          path: node_mobules
+          path: node_modules
           key : key
       - run: npm run e2e:headless
       - if: always()
