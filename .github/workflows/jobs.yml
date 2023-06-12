@@ -8,16 +8,14 @@ jobs:
       - run: npm run build
       - uses: actions/cache@v3
         with:
-          key: my_cache
-          path: cache
+          path: node_mobules
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
         with:
-          key: my_cache
-          path: cache
+          path: node_mobules
       - run: npm run e2e:headless
       - if: always()
         uses: actions/upload-artifact@v3
