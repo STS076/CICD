@@ -9,7 +9,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           key: my_cache
-          path: cache
+          path: node_modules
   test:
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           key: my_cache
-          path: cache
+          path: node_modules
       - run: npm run e2e:headless
       - if: always()
         uses: actions/upload-artifact@v3
