@@ -3,12 +3,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - run : npm run build 
-      - run : npm run start 
       - uses: webfactory/ssh-agent@v0.8.0
         with:
-         ssh-private-key: |
-          ${{ secrets.SSH_HOST }}
-          ${{ secrets.SSH_KEY }}
-          ${{ secrets.SSH_USER }}
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"ls"
 'on': [push]
