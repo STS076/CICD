@@ -17,4 +17,12 @@ jobs:
         with:
           push: true
           tags: ghcr.io/sts076/cicd:latest
+  deploy-docker:
+    runs-on: ubuntu-latest
+    needs : build-push-docker
+    steps:
+      - uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker pull ghcr.io/sts076/cicd:latest && docker stop next && docker rm next && docker run -d -p 3000:3000  docker pull ghcr.io/sts076/cicd:latest"
 'on': [push]
