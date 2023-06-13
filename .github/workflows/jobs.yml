@@ -13,5 +13,5 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/sts076/CICD:latest 
+          tags: ghcr.io/sts076/cicd:latest 
 'on': [push]
