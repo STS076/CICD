@@ -9,10 +9,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           username: ${{ github.actor }}
-  docker:
-    runs-on: ubuntu-latest
-    steps:
-        name: Build and push
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
