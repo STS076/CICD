@@ -1,6 +1,6 @@
 ---
 jobs:
-  login:
+  build-push-docker:
     permissions:
       contents: read
       packages: write
