@@ -1,5 +1,6 @@
 services : 
-  next : 
-    image : ghcr.io/sts076/cicd:latest
-    ports : 
+  next:
+    image: ghcr.io/sts076/cicd:latest
+    restart: always
+    ports:
       - 3000:3000
