@@ -1,6 +1,11 @@
-services : 
+services: 
   next:
     image: ghcr.io/sts076/cicd:latest
     restart: always
     ports:
       - 3000:3000
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval=30
