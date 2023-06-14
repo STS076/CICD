@@ -45,8 +45,10 @@ jobs:
 #          npm install && \
 #          npm run build && \
 #          pm2 restart all"
-  build-push-docker:
+  deploy-production:
     runs-on: ubuntu-latest
+    needs : [test]
+    environment : prod
     permissions:
       contents: read
       packages: write
@@ -65,7 +67,7 @@ jobs:
           tags: ghcr.io/sts076/cicd:latest
 #   deploy-docker:
 #     runs-on: ubuntu-latest
-#     needs: [build-push-docker, test]
+#     needs: [deploy-production, test]
 #     steps:
 #       - uses: webfactory/ssh-agent@v0.8.0
 #         with:
