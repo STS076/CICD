@@ -37,3 +37,7 @@ next-env.d.ts
 # cypress
 /cypress/screenshots
 /cypress/videos
+docker/db/data/mysql
+docker/db/data/sys
+docker/db/data/performance_schema
+docker/db/data
