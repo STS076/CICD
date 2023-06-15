@@ -1,33 +1,34 @@
-services: 
+services:
   next:
     image: ghcr.io/sts076/cicd:latest
     restart: always
-    ports:
-      - 3000:3000
-    networks : 
+    networks:
       - reverse-proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.next-production.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.next-production.rule=PathPrefix(`/next`)"
       - "traefik.http.routers.next-production.entrypoints=web"
 
-  db :
-    image : mariadb:10.6
-    environment : 
-      MARIADB_DATABASE : cube
-      MARIADB_USER : cube
-      MARIADB_PASSWORD : cube
-      MARIADB_RANDOM_ROOT_PASSWORD : "yes"
-    volumes : 
+  db:
+    image: mariadb:10.6
+    environment:
+      MARIADB_DATABASE: cube
+      MARIADB_USER: cube
+      MARIADB_PASSWORD: cube
+      MARIADB_RANDOM_ROOT_PASSWORD: "yes"
+    volumes:
       - ./docker/db/data:/var/lib/mysql
 
-  adminer : 
-    image : adminer 
-    ports : 
-      - 8080:8080
+  adminer:
+    image: adminer
+    networks:
+      - reverse-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminer-production.rule=PathPrefix(`/adminer`)"
+      - "traefik.http.routers.adminer-production.entrypoints=web"
 
-networks : 
-  reverse-proxy: 
+networks:
+  reverse-proxy:
     name: reverse-proxy
-    external : true
-
+    external: true
