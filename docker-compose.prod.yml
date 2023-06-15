@@ -1,6 +1,6 @@
 services:
   next:
-    image: ghcr.io/sts076/cicd:latest
+    image: ghcr.io/sts076/cicd:${{ github.ref_name }}
     restart: always
     networks:
       - reverse-proxy

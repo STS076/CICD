@@ -16,7 +16,7 @@
 #         uses: docker/build-push-action@v4
 #         with:
 #           push: true
-#           tags: ghcr.io/sts076/cicd:latest
+#           tags: ghcr.io/sts076/cicd:${{ github.ref_name }}
 #   deploy-docker:
 #     needs: build-push-docker
 #     runs-on: ubuntu-latest
